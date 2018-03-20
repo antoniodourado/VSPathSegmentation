@@ -42,6 +42,7 @@ list<pair<int,int>> ZedPathSegmentation::safePathList(cv::Mat img,cv::Mat distMa
 
     int bcheck = 23;
 
+
     cv::Mat cpathw = cv::Mat::ones(bcheck,larg,CV_8UC1);
     cpathw.setTo(cv::Scalar(255),cpathw==1);
     cv::Mat inter = cv::Mat::zeros(bcheck,larg,CV_8UC1);
