@@ -24,12 +24,14 @@ void mouse_callback(int  event, int  x, int  y, int  flag, void *param)
 int main(){
 
     ZedPathSegmentation segmentador;
+	//KinectPathSegmentation segmentador;
 	cv::Mat img3;
-	const char* imname = "zed3.jpg";
+	const char* imname = "zed38.jpg";
     img = cv::imread(imname);
-	img3 = cv::imread("zedRGB3.jpg");
+	img3 = cv::imread("zedRGB38.jpg");
     cv::cvtColor(img,img,CV_BGR2GRAY);
     segmentador.applyMorph(&img);
+	cv::imshow("imagem", img);
 	cv::bitwise_not(img,img);
 	list<pair<int, int>> paths = segmentador.safePathList(img, img);
 	cout << "Caminhos: " << paths.size() << endl;

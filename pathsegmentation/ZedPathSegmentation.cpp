@@ -10,7 +10,7 @@ ZedPathSegmentation::~ZedPathSegmentation(){
 
 list<pair<int,int>> ZedPathSegmentation::safePathList(cv::Mat img,cv::Mat distMat){
     int const larg = 100;
-    float navdist = 1;
+    float navdist = 80;
     cv::Mat diff;
     list<pair<int,int>> pathxcoord;
     cv::Mat imgbit =  img.clone();
@@ -128,10 +128,11 @@ cv::Mat ZedPathSegmentation::markSafePaths(cv::Mat img,list<pair<int,int>> paths
 }
 
 void ZedPathSegmentation::applyMorph(cv::Mat* imgbit){
-    cv::Mat sEl = cv::getStructuringElement(cv::MORPH_RECT,cv::Size(5,5));
-    //morphologyEx(*imgbit,*imgbit,cv::MORPH_DILATE,sEl);
+    cv::Mat sEl = cv::getStructuringElement(cv::MORPH_RECT,cv::Size(15,15));
+    morphologyEx(*imgbit,*imgbit,cv::MORPH_DILATE,sEl);
     morphologyEx(*imgbit,*imgbit,cv::MORPH_CLOSE,sEl);
-//    morphologyEx(*imgbit,*imgbit,cv::MORPH_OPEN,sEl);
+    morphologyEx(*imgbit,*imgbit,cv::MORPH_OPEN,sEl);
+	morphologyEx(*imgbit, *imgbit, cv::MORPH_OPEN, sEl);
 //    morphologyEx(*imgbit,*imgbit,cv::MORPH_DILATE,sEl);
 //    morphologyEx(*imgbit,*imgbit,cv::MORPH_DILATE,sEl);
 

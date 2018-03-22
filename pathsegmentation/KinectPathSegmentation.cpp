@@ -10,7 +10,7 @@ KinectPathSegmentation::~KinectPathSegmentation(){
 
 list<pair<int,int>> KinectPathSegmentation::safePathList(cv::Mat img,cv::Mat distMat){
     int const larg = 100;
-    float navdist = 10;
+    float navdist = 76;
     cv::Mat diff;
     list<pair<int,int>> pathxcoord;
     cv::Mat imgbit =  img.clone();
@@ -42,7 +42,7 @@ list<pair<int,int>> KinectPathSegmentation::safePathList(cv::Mat img,cv::Mat dis
 
     imshow("b",bpiece);
 
-    int bcheck = 20;
+    int bcheck = 5;
 
     cv::Mat cpathw = cv::Mat::ones(bcheck,larg,CV_8UC1);
     cpathw.setTo(cv::Scalar(255),cpathw==0);
@@ -127,7 +127,7 @@ cv::Mat KinectPathSegmentation::markSafePaths(cv::Mat img,list<pair<int,int>> pa
 
 void KinectPathSegmentation::applyMorph(cv::Mat* imgbit){
     cv::Mat sEl = cv::getStructuringElement(cv::MORPH_RECT,cv::Size(21,21));
-    //morphologyEx(*imgbit,*imgbit,cv::MORPH_DILATE,sEl);
+    morphologyEx(*imgbit,*imgbit,cv::MORPH_DILATE,sEl);
     morphologyEx(*imgbit,*imgbit,cv::MORPH_CLOSE,sEl);
 //    morphologyEx(*imgbit,*imgbit,cv::MORPH_OPEN,sEl);
 //    morphologyEx(*imgbit,*imgbit,cv::MORPH_DILATE,sEl);
